@@ -120,7 +120,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 """Set up platforms."""
                 await asyncio.gather(
                     *[
-                        hass.config_entries.async_forward_entry_setup(entry, platform)
+                        hass.config_entries.async_forward_entry_setup(entry, domain=platform)
                         for platform in PLATFORMS
                     ]
                 )
@@ -180,7 +180,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     all(
         await asyncio.gather(
             *[
-                hass.config_entries.async_forward_entry_unload(entry, platform)
+                hass.config_entries.async_forward_entry_unload(entry, domain=platform)
                 for platform in PLATFORMS
             ]
         )
